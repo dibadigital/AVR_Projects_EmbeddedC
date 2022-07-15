@@ -1,0 +1,17 @@
+/*
+ * SimpleButtonLED.c
+ *
+ * Created: 2022-07-10 9:43:47 AM
+ * Author: DibaUser
+ */
+
+#include <io.h>
+
+void main(void)
+{
+while (1)
+    {
+    // Please write your application code here
+
+    }
+}
