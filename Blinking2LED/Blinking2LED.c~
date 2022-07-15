@@ -1,0 +1,17 @@
+/*
+ * Blinking2LED.c
+ *
+ * Created: 2022-07-07 12:00:22 PM
+ * Author: DibaUser
+ */
+
+#include <io.h>
+
+void main(void)
+{
+while (1)
+    {
+    // Please write your application code here
+
+    }
+}
