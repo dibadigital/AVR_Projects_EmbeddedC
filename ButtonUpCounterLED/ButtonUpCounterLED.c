@@ -1,0 +1,92 @@
+#include <mega16.h>
+#include <delay.h>
+
+//void main(void)  // This Code isn't good idea because MCU gets stuck in the while.
+//{
+//    unsigned char i = 0;  //0 to 255
+//    
+//    DDRA = 0x00;
+//    PORTA = 0xFF;
+//    
+//    DDRB = 0xFF;
+//    PORTB = 0x00;
+//    
+//    while(1)
+//    {
+//        if((PINA & (1 << 0)) == 0)
+//        {      
+//            delay_ms(200);
+//            i++;
+//            PORTB = i;
+//            while((PINA & (1 << 0)) == 0);
+//        }
+//    }
+//}
+
+//void main(void)
+//{
+//    unsigned char i = 0;  //0 to 255
+//    unsigned char sw_previous_state = 0;
+//    
+//    DDRA = 0x00;
+//    PORTA = 0xFF;
+//    
+//    DDRB = 0xFF;
+//    PORTB = 0x00;
+//    
+//    DDRC = 0xFF;
+//    PORTC = 0x00;
+//    
+//    while(1)
+//    {
+//        if((PINA & (1 << 0)) == 1)
+//        {      
+//            sw_previous_state = 1;    
+//        } 
+//        
+//        if(sw_previous_state == 1 && (PINA & (1 << 0)) == 0)
+//        {  
+//            delay_ms(200);  
+//            sw_previous_state = 0;
+//            i++;
+//            PORTB = i;
+//        }    
+//        
+//        PORTC = ~PORTC;
+//        delay_ms(200);
+//    }
+//}
+
+void main(void)
+{
+    unsigned char i = 0;  //0 to 255
+    unsigned char sw_previous_state = 0;
+    
+    DDRA = 0x00;
+    PORTA = 0xFF;
+    
+    DDRB = 0xFF;
+    PORTB = 0x00;
+    
+    DDRC = 0xFF;
+    PORTC = 0x00;
+    
+    while(1)
+    {
+        if(((PINA >> 0) & 0x01) == 0x01)
+        {      
+            sw_previous_state = 1;    
+        } 
+        
+        if(sw_previous_state == 1 && ((PINA >> 0) & 0x01) == 0x00)
+        {  
+            delay_ms(200);  
+            sw_previous_state = 0;
+            i++;
+            PORTB = i;
+        }    
+        
+        PORTC = ~PORTC;
+        delay_ms(200);
+    }
+}
