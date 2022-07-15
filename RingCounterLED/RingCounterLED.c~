@@ -1,0 +1,17 @@
+/*
+ * RingCounterLED.c
+ *
+ * Created: 2022-06-28 10:53:37 AM
+ * Author: DibaUser
+ */
+
+#include <io.h>
+
+void main(void)
+{
+while (1)
+    {
+    // Please write your application code here
+
+    }
+}
