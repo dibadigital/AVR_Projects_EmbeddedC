@@ -1,0 +1,85 @@
+#include <mega16.h>
+#include <delay.h>
+
+//void main(void)
+//{
+//    unsigned char x = 1, i =0;
+//    
+//    DDRB = 0xFF;
+//    PORTB = 0x00;
+//    
+//    while(1)
+//    {
+//        while(i<7)
+//        {
+//            PORTB = x;  
+//            delay_ms(300);
+//            x <<= 1;
+//            i++;
+//        }
+//        i = 0;
+//        
+//        while(i<7)
+//        {
+//            PORTB = x;  
+//            delay_ms(300);
+//            x >>= 1;
+//            i++;
+//        } 
+//        i = 0; 
+//    }
+//}
+
+//void main(void)
+//{
+//    unsigned char x = 1, i = 0;
+//
+//    DDRB = 0xFF;
+//    PORTB = 0x00;
+//    
+//    while(1)
+//    {
+//        for(i=0; i<7 ; i++) 
+//        {
+//            PORTB = x;  
+//            delay_ms(300);
+//            x <<= 1;
+//        } 
+//        
+//        for(i=0; i<7 ; i++) 
+//        {
+//            PORTB = x;  
+//            delay_ms(300);
+//            x >>= 1;
+//        }
+//    }
+//}
+
+void main(void)
+{
+    unsigned char x = 1; 
+    unsigned char select = 0;
+    
+    DDRB = 0xFF;
+    PORTB = 0x00;
+    
+    while(1)
+    {   
+        if(select == 0)
+        {
+            PORTB = x;  
+            delay_ms(300);
+            x <<= 1;  
+            if(x == 0x80) 
+                select = 1;
+        }
+        else
+        { 
+            PORTB = x;  
+            delay_ms(300);
+            x <<= 1;  
+            if(x == 0x01) 
+                select = 0;
+        }
+    }
+}
