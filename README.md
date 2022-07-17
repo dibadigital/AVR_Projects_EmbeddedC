@@ -27,3 +27,24 @@ AVR_Projects_EmbeddedC
 
 13- ButtonTurnOnOffLED
 
+14- SimpleButtonLED
+
+15- ButtonAdjustableBlinkingLED
+
+16- ButtonUpCounterLED
+
+17- ButtonEnterAdjustableBlinkingLED
+
+18- ButtonMenuEnterLED
+
+19- UpCounter1Digit7SegmentCA
+
+20- DownCounter1Digit7SegmentCA
+
+21- UpCounter1Digit7SegmentCC
+
+22- DownCounter1Digit7SegmentCC
+
+23- UpCounter2Digits7SegmentCA
+
+24- DownCounter2Digits7SegmentCA
