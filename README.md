@@ -15,4 +15,15 @@ AVR_Projects_EmbeddedC
 
 7- RingUpDownCounterLED
 
-8- ButtonTurnOnOffLED
+8- DancingLight1LED
+
+9- DancingLight2LED
+
+10- DancingLight3LED
+
+11- DancingLight4LED
+
+12- DancingLight5LED
+
+13- ButtonTurnOnOffLED
+
