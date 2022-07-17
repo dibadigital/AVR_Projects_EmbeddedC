@@ -57,14 +57,18 @@ AVR_Projects_EmbeddedC
 
 28- DownCounter4DigitsMultiplex7SegmentCA
 
-29- UpCounter4DigitsBCD7Segment
+29- UpCounter2DigitsBCD7Segment
 
-30- DownCounter4DigitsBCD7Segment
+30- DownCounter2DigitsBCD7Segment
 
-31- DIPSW2DigitsMultiplex7SegmentCA
+31- UpCounter4DigitsBCD7Segment
 
-32- DIPSW4DigitsMultiplex7SegmentCA
+32- DownCounter4DigitsBCD7Segment
 
-33- SearchString2DigitsBCD7Segment
+33- DIPSW2DigitsMultiplex7SegmentCA
 
-34- UpCounterBlinking2DigitsMultiplex7SegmentCA
+34- DIPSW4DigitsMultiplex7SegmentCA
+
+35- SearchString2DigitsBCD7Segment
+
+36- UpCounterBlinking2DigitsMultiplex7SegmentCA
