@@ -72,3 +72,5 @@ AVR_Projects_EmbeddedC
 35- SearchString2DigitsBCD7Segment
 
 36- UpCounterBlinking2DigitsMultiplex7SegmentCA
+
+37- TrafficLightLED2Digits7SegmentCA
