@@ -1,0 +1,3 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"TrafficLightLED2Digits7SegmentCA.c" LINE:5
+show DSTACK_USAGE:1 DSTACK_LEVEL:1 FILE:"traffic_light.c" LINE:21
+calculate_digits DSTACK_USAGE:2 DSTACK_LEVEL:3 FILE:"traffic_light.c" LINE:10
