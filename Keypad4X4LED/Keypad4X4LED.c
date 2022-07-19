@@ -15,7 +15,6 @@ void main(void)
     while(1)
     {
         a = KeypadRead();
-        
         if (a < 16)
         {
             PORTB = a;    
