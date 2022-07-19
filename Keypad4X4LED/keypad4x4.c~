@@ -1,0 +1,43 @@
+#include "keypad4x4.h"
+
+void KeypadInit(void)
+{
+    DDRA = 0x0F;
+    PORTA = 0xFF;
+}
+
+unsigned char KeypadRead(void)
+{
+    unsigned char keypad_output = 16;
+    
+    R1 = 0; R2 = 1; R3 = 1; R4 = 1;
+    delay_ms(1);
+    if (C1 == 0){delay_ms(200); keypad_output = 7;}
+    if (C2 == 0){delay_ms(200); keypad_output = 8;}
+    if (C3 == 0){delay_ms(200); keypad_output = 9;}
+    if (C4 == 0){delay_ms(200); keypad_output = 10;}
+    
+    R1 = 1; R2 = 0; R3 = 1; R4 = 1;
+    delay_ms(1);
+    if (C1 == 0){delay_ms(200); keypad_output = 4;}
+    if (C2 == 0){delay_ms(200); keypad_output = 5;}
+    if (C3 == 0){delay_ms(200); keypad_output = 6;}
+    if (C4 == 0){delay_ms(200); keypad_output = 11;}
+    
+    R1 = 1; R2 = 1; R3 = 0; R4 = 1;
+    delay_ms(1);
+    if (C1 == 0){delay_ms(200); keypad_output = 1;}
+    if (C2 == 0){delay_ms(200); keypad_output = 2;}
+    if (C3 == 0){delay_ms(200); keypad_output = 3;}
+    if (C4 == 0){delay_ms(200); keypad_output = 12;}
+    
+    R1 = 1; R2 = 1; R3 = 1; R4 = 0;
+    delay_ms(1);
+    if (C1 == 0){delay_ms(200); keypad_output = 14;}
+    if (C2 == 0){delay_ms(200); keypad_output = 0;}
+    if (C3 == 0){delay_ms(200); keypad_output = 15;}
+    if (C4 == 0){delay_ms(200); keypad_output = 13;}
+    
+    return keypad_output; 
+}
+
