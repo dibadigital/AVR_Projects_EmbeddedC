@@ -79,4 +79,6 @@ AVR_Projects_EmbeddedC
 
 39- RotaryEncoderVolumeUpDownCounterLED4DigitsMultiplex7SegmentCA
 
-40- Keypad4X4LED
+40- RotaryEncoderVolumeAdjustableBlinkingLED4DigitsMultiplex7SegmentCA
+
+41- Keypad4X4LED
