@@ -1,0 +1,2 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"RotaryEncoderVolumeAdjustableBlinkingLED4DigitsMultiplex7SegmentCA.c" LINE:98
+SevenSegmentWrite DSTACK_USAGE:3 DSTACK_LEVEL:3 FILE:"AdjustableBlinking.c" LINE:82
