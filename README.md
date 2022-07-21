@@ -75,8 +75,8 @@ AVR_Projects_EmbeddedC
 
 37- TrafficLightLED2Digits7SegmentCA
 
-38- UpDownCounterRotaryEncoderVolumeLED
+38- RotaryEncoderVolumeUpDownCounterLED
 
-39- UpDownCounterRotaryEncoderVolumeLED4DigitsMultiplex7SegmentCA
+39- RotaryEncoderVolumeUpDownCounterLED4DigitsMultiplex7SegmentCA
 
 40- Keypad4X4LED
