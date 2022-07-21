@@ -77,4 +77,6 @@ AVR_Projects_EmbeddedC
 
 38- UpDownCounterRotaryEncoderVolumeLED
 
-39- Keypad4X4LED
+39- UpDownCounterRotaryEncoderVolumeLED4DigitsMultiplex7SegmentCA
+
+40- Keypad4X4LED
