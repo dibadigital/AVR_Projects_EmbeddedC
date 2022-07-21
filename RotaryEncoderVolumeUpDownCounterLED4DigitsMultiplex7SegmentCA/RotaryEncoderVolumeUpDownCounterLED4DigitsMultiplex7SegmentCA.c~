@@ -1,0 +1,17 @@
+/*
+ * RotaryEncoderVolumeUpDownCounterLED4DigitsMultiplex7SegmentCA.c
+ *
+ * Created: 2022-07-21 7:28:28 PM
+ * Author: DibaUser
+ */
+
+#include <io.h>
+
+void main(void)
+{
+while (1)
+    {
+    // Please write your application code here
+
+    }
+}
