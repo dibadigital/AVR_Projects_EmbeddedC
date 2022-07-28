@@ -1,0 +1,33 @@
+#include <mega16.h>
+#include <delay.h>
+
+#include "keypad4x4_led_7seg.h"
+
+void main(void)
+{   
+    unsigned char flag_keypad = 0;
+    
+    LEDInit();
+    KeypadInit();
+    SevenSegmentInit();
+    
+    while(1)
+    {  
+        if(GetEdge() == 1) //To avoid holding the key
+        {
+            if(KeypadRead() != 16) 
+                flag_keypad = 1;
+        }
+    
+        if(flag_keypad == 1)
+        {       
+            unsigned char flag_stop = KeypadFunc();
+            if(flag_stop == 1)
+                flag_keypad = 0;
+        }
+        
+        BlinkingFunc();
+        SevenSegmentUpdate();  
+        TimerHandler();
+    }
+}
