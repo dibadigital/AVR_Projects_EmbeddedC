@@ -85,6 +85,8 @@ AVR_Projects_EmbeddedC
 
 42- Keypad4X4LED
 
-43- Keypad4X44DigitsMultiplex7SegmentCA
+43- Keypad4X41Digit7SegmentCA
 
-44- Keypad4X4AdjustableBlinkingLED4DigitsMultiplex7SegmentCA
+44- Keypad4X44DigitsMultiplex7SegmentCA
+
+45- Keypad4X4AdjustableBlinkingLED4DigitsMultiplex7SegmentCA
