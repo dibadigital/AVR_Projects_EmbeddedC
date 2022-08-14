@@ -92,3 +92,5 @@ AVR_Projects_EmbeddedC
 45- Keypad4X4AdjustableBlinkingLED4DigitsMultiplex7SegmentCA
 
 46- Keypad4X4MenuLED1Digit7SegmentCA
+
+47- UpCounter8Wires2X16CharacterLCD
