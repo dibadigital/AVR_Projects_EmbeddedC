@@ -1,7 +1,7 @@
 #ifndef _keypad4x4_H
 #define _keypad4x4_H
 
-#include <mega16.h> 
+#include <mega16a.h> 
 #include <delay.h>
 
 #define R1 PORTA.0
