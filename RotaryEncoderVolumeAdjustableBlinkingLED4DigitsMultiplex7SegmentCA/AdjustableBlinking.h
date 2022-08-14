@@ -1,7 +1,7 @@
 #ifndef _AdjustableBlinking_H
 #define _AdjustableBlinking_H
 
-#include <mega16.h> 
+#include <mega16a.h> 
 #include <delay.h>
 #include <stdint.h>
 
