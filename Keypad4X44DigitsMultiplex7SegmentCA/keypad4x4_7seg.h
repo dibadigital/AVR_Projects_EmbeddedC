@@ -1,7 +1,7 @@
 #ifndef _keypad4x4_7seg_H
 #define _keypad4x4_7seg_H
 
-#include <mega16.h> 
+#include <mega16a.h> 
 #include <delay.h>
 #include <stdint.h>
 
