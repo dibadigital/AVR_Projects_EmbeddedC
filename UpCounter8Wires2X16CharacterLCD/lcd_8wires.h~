@@ -1,0 +1,9 @@
+#ifndef _lcd_8wires_H
+#define _lcd_8wires_H
+
+#include <mega16.h>
+#include <delay.h>
+
+
+
+#endif
