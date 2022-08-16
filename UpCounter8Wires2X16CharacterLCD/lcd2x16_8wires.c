@@ -16,6 +16,7 @@ void lcd_init(void)
     delay_ms(2);
     DATA_DDR = 0xFF;
     CONTROL_DDR = 0xFF;
+    send_command(0x02); //return cursor
     send_command(0x38); //cofiguration 8 wires 
     send_command(0x06); //shift cursor to right
     send_command(0x0C); //turn on display and turn off cursor
@@ -25,7 +26,7 @@ void lcd_clear(void)
 {
     delay_ms(2);
     send_command(0x01); //clear lcd
-    send_command(0x02); //return curser
+    send_command(0x02); //return cursor
 }
 
 void lcd_gotoxy(unsigned char x, unsigned char y)
