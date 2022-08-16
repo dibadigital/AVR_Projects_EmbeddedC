@@ -1,0 +1,48 @@
+#include <mega16a.h>
+#include <delay.h>
+
+#include "DancingLight.h"
+
+void main(void)
+{
+    port x;
+    
+    x.PA_DIR = OUTPUT;
+    x.PB_DIR = OUTPUT;
+    x.PC_DIR = OUTPUT;
+    x.PD_DIR = OUTPUT;
+    
+    x.PA_PORT = RESET_ALL;
+    x.PB_PORT = RESET_ALL;
+    x.PC_PORT = RESET_ALL;
+    x.PD_PORT = RESET_ALL;
+    
+    GPIO_INIT(&x);  
+    
+    while(1)
+    {
+        GPIO_WRITE_PIN(PORTA, 0x0F);
+        delay_ms(500);
+        GPIO_WRITE_PIN(PORTA, 0xF0);
+        delay_ms(500);              
+        GPIO_WRITE_PIN(PORTA, 0x00);
+        
+        GPIO_WRITE_PIN(PORTB, 0x0F);
+        delay_ms(500);
+        GPIO_WRITE_PIN(PORTB, 0xF0);
+        delay_ms(500);              
+        GPIO_WRITE_PIN(PORTB, 0x00);
+        
+        GPIO_WRITE_PIN(PORTC, 0x0F);
+        delay_ms(500);
+        GPIO_WRITE_PIN(PORTC, 0xF0);
+        delay_ms(500);              
+        GPIO_WRITE_PIN(PORTC, 0x00);
+        
+        GPIO_WRITE_PIN(PORTD, 0x0F);
+        delay_ms(500);
+        GPIO_WRITE_PIN(PORTD, 0xF0);
+        delay_ms(500);              
+        GPIO_WRITE_PIN(PORTD, 0x00);  
+    }
+}

@@ -1,0 +1,17 @@
+#ifndef _DancingLight_H
+#define _DancingLight_H
+
+#include <mega16a.h>
+#include <delay.h>
+
+#define OUTPUT    0xFF
+#define INPUT     0x00
+
+#define SET_ALL   0xFF
+#define RESET_ALL 0x00
+
+#define GPIO_WRITE_PIN(port, val) port = val
+
+void GPIO_INIT(port *p);
+
+#endif
