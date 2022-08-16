@@ -21,7 +21,7 @@ void main(void)
          sprintf(str,"Value = %d",i);
          lcd_gotoxy(0,0);
          lcd_puts(str);
-         delay_ms(500);
+         delay_ms(1000);
          i++;
          if(i > 100) 
          {
