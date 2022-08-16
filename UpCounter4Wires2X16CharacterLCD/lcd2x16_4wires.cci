@@ -1,0 +1,8 @@
+VERSION:3 SOURCE_TIMESTAMP:55108B83
+NODE:I LEVEL:0 LINE:1 "D:\AVR\UpCounter4Wires2X16CharacterLCD\lcd2x16_4wires.h"
+NODE:F LEVEL:0 LINE:3 "send_command(unsigned char command)"
+NODE:F LEVEL:0 LINE:24 "lcd_init(void)"
+NODE:F LEVEL:0 LINE:34 "lcd_clear(void)"
+NODE:F LEVEL:0 LINE:41 "lcd_gotoxy(unsigned char x,unsigned char y)"
+NODE:F LEVEL:0 LINE:56 "lcd_putchar(unsigned char ch)"
+NODE:F LEVEL:0 LINE:77 "lcd_puts(unsigned char * str)"
