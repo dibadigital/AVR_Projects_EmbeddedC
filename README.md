@@ -94,3 +94,5 @@ AVR_Projects_EmbeddedC
 46- Keypad4X4MenuLED1Digit7SegmentCA
 
 47- UpCounter8Wires2X16CharacterLCD
+
+48- UpCounter4Wires2X16CharacterLCD
