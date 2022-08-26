@@ -1,7 +1,7 @@
 #include <mega16a.h>
 #include <delay.h>
 
-//void main(void)  // This Code isn't good idea if the  delay is high.
+//void main(void)  // This Code isn't good idea if the delay is high.
 //{
 //    unsigned char menu_cnt = 0, select = 0;
 //    unsigned char sw0_previous_state = 0, sw1_previous_state = 0; 
