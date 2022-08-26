@@ -73,30 +73,32 @@ AVR_Projects_EmbeddedC
 
 36- SearchString2DigitsBCD7Segment
 
-37- UpCounterBlinking2DigitsMultiplex7SegmentCA
+37- RingCounterLEDUpCounter2DigitsMultiplex7SegmentCA
 
-38- TrafficLightLED2Digits7SegmentCA
+38- UpCounterBlinking2DigitsMultiplex7SegmentCA
 
-39- RotaryEncoderVolumeUpDownCounterLED
+39- TrafficLightLED2Digits7SegmentCA
 
-40- RotaryEncoderVolumeUpDownCounterLED4DigitsMultiplex7SegmentCA
+40- RotaryEncoderVolumeUpDownCounterLED
 
-41- RotaryEncoderVolumeAdjustableBlinkingLED4DigitsMultiplex7SegmentCA
+41- RotaryEncoderVolumeUpDownCounterLED4DigitsMultiplex7SegmentCA
 
-42- RotaryEncoderVolumeMenuLED4DigitsMultiplex7SegmentCA
+42- RotaryEncoderVolumeAdjustableBlinkingLED4DigitsMultiplex7SegmentCA
 
-43- Keypad4X4LED
+43- RotaryEncoderVolumeMenuLED4DigitsMultiplex7SegmentCA
 
-44- Keypad4X41Digit7SegmentCA
+44- Keypad4X4LED
 
-45- Keypad4X44DigitsMultiplex7SegmentCA
+45- Keypad4X41Digit7SegmentCA
 
-46- Keypad4X4AdjustableBlinkingLED4DigitsMultiplex7SegmentCA
+46- Keypad4X44DigitsMultiplex7SegmentCA
 
-47- Keypad4X4MenuLED1Digit7SegmentCA
+47- Keypad4X4AdjustableBlinkingLED4DigitsMultiplex7SegmentCA
 
-48- UpCounter8Wires2X16CharacterLCD
+48- Keypad4X4MenuLED1Digit7SegmentCA
 
-49- UpCounter4Wires2X16CharacterLCD
+49- UpCounter8Wires2X16CharacterLCD
 
-50- Keypad4X4Calculator2X16CharacterLCD
+50- UpCounter4Wires2X16CharacterLCD
+
+51- Keypad4X4Calculator2X16CharacterLCD
