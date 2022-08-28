@@ -18,12 +18,12 @@ void main(void)
     
     while(1)
     {
-         sprintf(str,"Value = %d",i);
+         sprintf(str,"Value = %02d",i);
          lcd_gotoxy(0,0);
          lcd_puts(str);
          delay_ms(1000);
          i++;
-         if(i > 100) 
+         if(i > 99) 
          {
             i = 0;
             lcd_clear();
