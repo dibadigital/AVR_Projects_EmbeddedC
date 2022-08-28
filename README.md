@@ -103,4 +103,6 @@ AVR_Projects_EmbeddedC
 
 51- UpCounter4Wires2X16CharacterLCD
 
-52- Keypad4X4Calculator2X16CharacterLCD
+52- DownCounter4Wires2X16CharacterLCD
+
+53- Keypad4X4Calculator2X16CharacterLCD
