@@ -23,9 +23,7 @@ void main(void)
          lcd_puts(str);
          delay_ms(1000);
          i++;
-         if(i > 99) 
-         {
+         if(i > 99)
             i = 0;
-         }
     }
 }
