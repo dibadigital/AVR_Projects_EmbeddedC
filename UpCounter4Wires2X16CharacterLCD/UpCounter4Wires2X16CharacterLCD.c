@@ -26,7 +26,6 @@ void main(void)
          if(i > 99) 
          {
             i = 0;
-            lcd_clear();
          }
     }
 }
