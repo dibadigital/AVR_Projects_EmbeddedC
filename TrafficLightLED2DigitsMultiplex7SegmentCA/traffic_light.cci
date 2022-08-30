@@ -1,0 +1,10 @@
+VERSION:3 SOURCE_TIMESTAMP:551E64C8
+NODE:I LEVEL:0 LINE:1 "D:\AVR\TrafficLightLED2DigitsMultiplex7SegmentCA\traffic_light.h"
+NODE:C LEVEL:0 LINE:3 "SevenSegmentCA -> RAM:????"
+NODE:V LEVEL:0 LINE:4 "i -> RAM:????"
+NODE:V LEVEL:0 LINE:5 "delay_cnt -> RAM:????"
+NODE:V LEVEL:0 LINE:6 "digitIdx -> RAM:????"
+NODE:V LEVEL:0 LINE:7 "digits -> RAM:????"
+NODE:V LEVEL:0 LINE:8 "flag_change_state -> RAM:????"
+NODE:F LEVEL:0 LINE:10 "calculate_digits(char j)"
+NODE:F LEVEL:0 LINE:21 "show(unsigned char s)"

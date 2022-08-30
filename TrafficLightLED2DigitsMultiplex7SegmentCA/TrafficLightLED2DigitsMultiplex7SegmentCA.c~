@@ -1,0 +1,17 @@
+/*
+ * TrafficLightLED2DigitsMultiplex7SegmentCA.c
+ *
+ * Created: 8/30/2022 12:36:47 PM
+ * Author: DibaUser
+ */
+
+#include <io.h>
+
+void main(void)
+{
+while (1)
+    {
+    // Please write your application code here
+
+    }
+}
