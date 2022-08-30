@@ -79,7 +79,7 @@ AVR_Projects_EmbeddedC
 
 39- UpCounterBlinking2DigitsMultiplex7SegmentCA
 
-40- TrafficLightLED2Digits7SegmentCA
+40- TrafficLightLED2DigitsMultiplex7SegmentCA
 
 41- RotaryEncoderVolumeUpDownCounterLED
 
