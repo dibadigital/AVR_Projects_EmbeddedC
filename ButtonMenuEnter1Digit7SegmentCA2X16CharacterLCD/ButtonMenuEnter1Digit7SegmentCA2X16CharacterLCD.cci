@@ -1,0 +1,5 @@
+VERSION:3 SOURCE_TIMESTAMP:551E8689
+NODE:I LEVEL:0 LINE:1 "C:\cvavr\inc\mega16a.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr\inc\delay.h"
+NODE:I LEVEL:0 LINE:5 "C:\cvavr\inc\alcd.h"
+NODE:F LEVEL:0 LINE:7 "main(void)"
