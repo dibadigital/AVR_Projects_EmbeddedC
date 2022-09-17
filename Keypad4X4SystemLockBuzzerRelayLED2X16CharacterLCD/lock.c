@@ -1,0 +1,531 @@
+#include "lock.h"
+
+menu_type lock_state = MENU_ENTER_PASS;
+
+char messages[7][17] = 
+{
+    {"Enter Password  "},
+    {"Welcome!        "},
+    {"Wrong Pass!     "},
+    {"Previous Pass   "},
+    {"Enter New Pass  "},
+    {"Pass is Changed "}
+};
+
+unsigned char passIndex = 0;
+unsigned char password_entered[MAX_OF_Elements_PassWord] = {0};
+eeprom unsigned char password_registered[MAX_OF_Elements_PassWord] = {1,2,3,4,5};
+
+unsigned char flag_keypad = 0;
+const unsigned char KeypadMatrix[4][4] = {{7,8,9,10},{4,5,6,11},{1,2,3,12},{14,0,15,13}};
+unsigned char C_previous[4] = {0};
+unsigned char key = 0, key_previous = 0;
+unsigned char debouncer = 0, keyReady = 0;
+unsigned char flag_mode_enter = 0, flag_msg_write = 0;
+unsigned char cnt_wait = 0, cnt_msg = 0;
+
+unsigned char t_buzzer_duration[MAX_OF_Elements_BUZZER] = {0};
+unsigned char t_buzzer_total[MAX_OF_Elements_BUZZER] = {0};
+unsigned char flag_buzzer = 0;
+unsigned char cnt_buzzer = 0, buzzer_index = 0, num_of_buzzer_element = 0;
+unsigned char relay_state = 0;
+
+void KeypadInit(void)
+{
+    DDRA = 0x0F;
+    PORTA = 0xFF;
+}
+
+void BuzzerInit(void)
+{
+    DDRB |= (1 << 0); 
+    PORTB &= ~(1 << 0);  
+}
+
+void RelayInit(void)
+{
+    DDRB |= (1 << 1);  
+    PORTB &= ~(1 << 1);
+}
+
+void lock_process(void)
+{
+    switch(lock_state)
+    {  
+        case MENU_ENTER_PASS:  
+            flag_mode_enter = 0;
+            message_write(MSG_ENTER_PASS);
+            if(flag_msg_write == 1)  
+            {                   
+                flag_msg_write = 0;
+                lock_state = MENU_INPUT;
+            }
+        break;    
+        
+        case MENU_OK_PASS:   
+            message_write(MSG_OK_PASS);  
+            if(flag_msg_write == 1)
+            {
+                cnt_wait++;  
+                if(cnt_wait >= 10)
+                {       
+                    cnt_wait = 0;
+                    flag_msg_write = 0;
+                    lock_state = MENU_ENTER_PASS;
+                }
+            }
+        break;
+        
+        case MENU_WRONG_PASS:
+            message_write(MSG_WRONG_PASS); 
+            if(flag_msg_write == 1)
+            {
+                cnt_wait++;  
+                if(cnt_wait >= 10)
+                {       
+                    cnt_wait = 0;   
+                    flag_msg_write = 0;
+                    lock_state = MENU_ENTER_PASS;
+                }
+            }
+        break;
+        
+        case MENU_PREVIOUS_PASS:   
+            flag_mode_enter = 1;
+            message_write(MSG_PREVIOUS_PASS); 
+            if(flag_msg_write == 1)   
+            {                
+                flag_msg_write = 0;
+                lock_state = MENU_INPUT;
+            }
+        break;
+              
+        case MENU_NEW_PASS:  
+            flag_mode_enter = 2;
+            message_write(MSG_NEW_PASS); 
+            if(flag_msg_write == 1)   
+            {                    
+                flag_msg_write = 0;
+                lock_state = MENU_INPUT;
+            }
+        break;
+        
+        case MENU_CHANGE_OK:            
+            message_write(MSG_CHANGE_OK);  
+            if(flag_msg_write == 1)
+            {                      
+                cnt_wait++;  
+                if(cnt_wait >= 10)
+                {       
+                    cnt_wait = 0; 
+                    flag_msg_write = 0;
+                    lock_state = MENU_ENTER_PASS;  
+                }
+            }
+        break;
+        
+        case MENU_INPUT:  
+            if(GetEdge() == 1) //To avoid holding the key
+            {
+                if(KeypadRead() != 16) 
+                    flag_keypad = 1;
+            }
+    
+            if(flag_keypad == 1)
+            {       
+                unsigned char flag_stop = KeypadFunc();
+                if(flag_stop == 1)
+                    flag_keypad = 0;
+            } 
+        break;
+    }
+}
+
+unsigned char GetEdge(void)
+{
+    unsigned char flag_edge = 0;
+    
+    R1 = 0; R2 = 0; R3 = 0; R4 = 0;
+    delay_ms(1);  //Because half of the port is input and half of the port is output. 
+    if((C1 == 0 && C_previous[0]==1) ||
+       (C2 == 0 && C_previous[1]==1) ||
+       (C3 == 0 && C_previous[2]==1) ||
+       (C4 == 0 && C_previous[3]==1))  
+     {
+       flag_edge = 1;
+     }
+   
+    C_previous[0] = C1;
+    C_previous[1] = C2;  
+    C_previous[2] = C3;  
+    C_previous[3] = C4;
+    
+    return flag_edge;
+}
+
+unsigned char KeypadRead(void)
+{
+    unsigned char x = 16;
+    
+    R1 = 0; R2 = 1; R3 = 1; R4 = 1;
+    delay_ms(1);  //Because half of the port is input and half of the port is output.
+    if (C1 == 0){x = KeypadMatrix[0][0];}
+    if (C2 == 0){x = KeypadMatrix[0][1];}
+    if (C3 == 0){x = KeypadMatrix[0][2];}
+    if (C4 == 0){x = KeypadMatrix[0][3];}
+    
+    R1 = 1; R2 = 0; R3 = 1; R4 = 1;
+    delay_ms(1);  //Because half of the port is input and half of the port is output.
+    if (C1 == 0){x = KeypadMatrix[1][0];}
+    if (C2 == 0){x = KeypadMatrix[1][1];}
+    if (C3 == 0){x = KeypadMatrix[1][2];}
+    if (C4 == 0){x = KeypadMatrix[1][3];}
+    
+    R1 = 1; R2 = 1; R3 = 0; R4 = 1;
+    delay_ms(1);  //Because half of the port is input and half of the port is output.
+    if (C1 == 0){x = KeypadMatrix[2][0];}
+    if (C2 == 0){x = KeypadMatrix[2][1];}
+    if (C3 == 0){x = KeypadMatrix[2][2];}
+    if (C4 == 0){x = KeypadMatrix[2][3];}
+    
+    R1 = 1; R2 = 1; R3 = 1; R4 = 0;
+    delay_ms(1);  //Because half of the port is input and half of the port is output.
+    if (C1 == 0){x = KeypadMatrix[3][0];}
+    if (C2 == 0){x = KeypadMatrix[3][1];}
+    if (C3 == 0){x = KeypadMatrix[3][2];}
+    if (C4 == 0){x = KeypadMatrix[3][3];}
+
+    return x; 
+}
+
+unsigned char KeypadFunc(void)
+{  
+    unsigned char flag_out = 0;
+    
+    key = KeypadRead();
+    if(key != key_previous) //To avoid bouncing the key
+    {   
+        key_previous = key;
+        debouncer = 0;
+        keyReady = 0;   
+    } 
+    else
+    {  
+        if(key != 16)
+        {    
+            debouncer++;
+            if(debouncer == 10) //10*5ms = 50ms
+            {
+                debouncer = 0;
+                keyReady = 1; 
+                flag_out = 1;
+            } 
+        }
+        else
+        {
+            key_previous = key;
+            debouncer = 0;
+            keyReady = 0;
+        }
+    }
+    
+    if(keyReady == 1)
+    {
+        keyReady = 0;
+        key_process();
+    } 
+    
+    return flag_out;
+}
+
+void key_process(void)
+{    
+    if(key < 10)
+    {
+        if(password_write() == 1)
+        {
+            star();        
+            sound1();
+            buzzer_start();
+        }
+    }
+    else if(key == 10)
+    {      
+        passIndex = 0;
+        password_clear_all(0); //clear password_entered
+        sound5();  
+        buzzer_start();
+        lock_state = MENU_PREVIOUS_PASS;
+    }
+    else if(key == 14)
+    {
+        if(password_clear() == 1)
+        {
+            space();       
+            sound2();
+            buzzer_start();
+        }
+    }
+    else if(key == 15)
+    {     
+        if(flag_mode_enter == 0)
+        {
+            if(password_verification() == 1) 
+            {         
+                sound3();
+                buzzer_start();
+                
+                relay_state = 1;
+                relay_process();
+                delay_ms(100);
+                relay_state = 0;
+                relay_process();
+    
+                lock_state = MENU_OK_PASS;
+            }
+            else             
+            {
+                sound4();
+                buzzer_start();
+                lock_state = MENU_WRONG_PASS; 
+            }
+        }  
+        else if(flag_mode_enter == 1)
+        {
+            if(password_verification() == 1) 
+            {           
+                sound3();
+                buzzer_start();
+                lock_state = MENU_NEW_PASS;    
+            }
+            else      
+            {       
+                sound4();
+                buzzer_start();
+                lock_state = MENU_WRONG_PASS; 
+            }
+        }  
+        else if(flag_mode_enter == 2)
+        {     
+            password_write_reg();
+            sound5();    
+            buzzer_start();
+            lock_state = MENU_CHANGE_OK;
+        }
+        passIndex = 0;
+        password_clear_all(0); //clear password_entered
+    }
+}
+
+unsigned char password_write(void)
+{
+    unsigned char flag = 0;
+    
+    if(passIndex < MAX_OF_Elements_PassWord)
+    {    
+        password_entered[passIndex] = key;
+        passIndex++;
+        flag = 1;
+    }   
+    else 
+    {
+        flag = 0;
+    } 
+    
+    return flag;
+}
+
+void password_write_reg(void)
+{
+    unsigned char i = 0;    
+    
+    password_clear_all(1); //clear password_registered
+    
+    for (i = 0; i < passIndex; i++)
+        password_registered[i] = password_entered[i];
+            
+    passIndex = 0;
+}
+
+unsigned char password_verification(void)
+{
+    unsigned char flag = 0;   
+    unsigned char i = 0;
+    unsigned char match_cnt = 0;
+    
+    for (i = 0; i < MAX_OF_Elements_PassWord; i++)
+    {
+        if (password_entered[i] == password_registered[i])
+        {
+            match_cnt++;    
+        }
+        password_entered[i] = 0; //reset password_entered   
+    }  
+        
+    if (match_cnt == MAX_OF_Elements_PassWord)
+        flag = 1;    
+    else
+        flag = 0;
+       
+    passIndex = 0;
+    
+    return flag;
+}
+
+unsigned char password_clear(void)
+{
+    unsigned char flag = 0;
+    
+    if(passIndex > 0)
+    {
+        passIndex--;
+        password_entered[passIndex] = 0;
+        flag = 1;
+    }   
+    else 
+    {
+        flag = 0;
+    } 
+    
+    return flag;
+}
+
+void password_clear_all(unsigned char flag_enter_reg)
+{
+    unsigned char i = 0;  
+    
+    if(flag_enter_reg == 0)
+    {
+        for (i = 0; i < MAX_OF_Elements_PassWord; i++)
+            password_entered[i] = 0; 
+    }
+    else //flag_enter_reg == 1
+    {
+        for (i = 0; i < MAX_OF_Elements_PassWord; i++)
+            password_registered[i] = 0;
+    }
+}
+
+void message_write(unsigned char msgIndex_input)
+{
+    lcd_clear();
+    lcd_gotoxy(0, 0);
+    lcd_puts(messages[msgIndex_input]);
+        
+    cnt_msg++;
+    if(cnt_msg >= 100)
+    {
+        cnt_msg = 0;
+        flag_msg_write = 1;
+    }   
+}
+
+void star(void)
+{
+    lcd_gotoxy(passIndex - 1, 1);
+    lcd_putchar('*');
+}
+
+void space(void)
+{
+    lcd_gotoxy(passIndex, 1);
+    lcd_putchar(' ');
+} 
+
+void NumBuzzer_write(unsigned char num)
+{
+    if(num < MAX_OF_Elements_BUZZER)
+        num_of_buzzer_element = num;
+}
+
+void sound1(void)
+{
+    t_buzzer_total[0] = 5;  
+    t_buzzer_duration[0] = 3;
+    NumBuzzer_write(1); 
+}
+
+void sound2(void)
+{
+    t_buzzer_total[0] = 10;  
+    t_buzzer_duration[0] = 3;
+    t_buzzer_total[1] = 10;  
+    t_buzzer_duration[1] = 3;
+    NumBuzzer_write(2); 
+}
+
+void sound3(void)
+{
+    t_buzzer_total[0] = 10;  
+    t_buzzer_duration[0] = 3;
+    t_buzzer_total[1] = 10;  
+    t_buzzer_duration[1] = 3; 
+    t_buzzer_total[2] = 20;  
+    t_buzzer_duration[2] = 5; 
+    t_buzzer_total[3] = 40;  
+    t_buzzer_duration[3] = 30;
+    NumBuzzer_write(4); 
+}
+
+void sound4(void)
+{
+    t_buzzer_total[0] = 100;  
+    t_buzzer_duration[0] = 90;
+    NumBuzzer_write(1); 
+}
+
+void sound5(void)
+{
+    t_buzzer_total[0] = 50;  
+    t_buzzer_duration[0] = 40;  
+    t_buzzer_total[1] = 50;  
+    t_buzzer_duration[1] = 40;
+    NumBuzzer_write(2); 
+}
+
+void buzzer_start(void)
+{
+    flag_buzzer = 1;
+}
+void buzzer_stop(void)
+{
+    flag_buzzer = 0;
+    buzzer_index = 0; 
+    num_of_buzzer_element = 0;
+}
+
+void Buzzer_Relay_write(unsigned char pin_num, unsigned char pin_state)
+{
+    if (pin_state == 0)            
+        PORTB &= ~(1 << pin_num);
+    else
+        PORTB |= (1 << pin_num);
+}
+
+void buzzer_process(void)
+{
+    if(flag_buzzer == 1)
+    {
+        if(cnt_buzzer < t_buzzer_duration[buzzer_index])
+            Buzzer_Relay_write(0, 1);   //SET Buzzer
+        else
+            Buzzer_Relay_write(0, 0);   //RESET Buzzer
+        
+        if(cnt_buzzer < t_buzzer_total[buzzer_index])
+            cnt_buzzer++;              
+        else             
+        {  
+            if (buzzer_index < (num_of_buzzer_element - 1))
+                buzzer_index++; 
+            else
+                buzzer_stop();
+            
+            cnt_buzzer = 0;   
+        }
+    }
+}
+
+void relay_process(void)
+{
+    Buzzer_Relay_write(1, relay_state);   //SET or RESET Relay
+}
