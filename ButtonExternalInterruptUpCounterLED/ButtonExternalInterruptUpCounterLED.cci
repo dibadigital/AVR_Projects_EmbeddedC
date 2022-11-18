@@ -1,6 +1,0 @@
-VERSION:3 SOURCE_TIMESTAMP:5572A028
-NODE:I LEVEL:0 LINE:1 "C:\cvavr\inc\mega16a.h"
-NODE:I LEVEL:0 LINE:2 "C:\cvavr\inc\delay.h"
-NODE:V LEVEL:0 LINE:4 "i -> R5"
-NODE:F LEVEL:0 LINE:7 "isr_ext_int0(void)"
-NODE:F LEVEL:0 LINE:13 "main(void)"
