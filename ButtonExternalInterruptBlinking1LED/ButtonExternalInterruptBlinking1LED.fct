@@ -1,0 +1,2 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"ButtonExternalInterruptBlinking1LED.c" LINE:17
+isr_ext_int0 DSTACK_USAGE:1 DSTACK_LEVEL:1 FILE:"ButtonExternalInterruptBlinking1LED.c" LINE:5
