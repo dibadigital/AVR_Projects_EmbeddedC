@@ -1,0 +1,2 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"ButtonExternalInterruptUpCounterLED.c" LINE:13
+isr_ext_int0 DSTACK_USAGE:2 DSTACK_LEVEL:2 FILE:"ButtonExternalInterruptUpCounterLED.c" LINE:7
