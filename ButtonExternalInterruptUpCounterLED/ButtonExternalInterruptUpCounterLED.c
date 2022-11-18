@@ -4,7 +4,7 @@
 unsigned char i = 0;  //0 to 255
 
 // External Interrupt 0 service routine
-interrupt [EXT_INT0] void isr_ext_int0(void) //INT0 : PD2
+interrupt [EXT_INT0] void isr_ext_int0(void) //EXT_INT0 : PD2
 {
     i++;                  
     PORTB = i;
