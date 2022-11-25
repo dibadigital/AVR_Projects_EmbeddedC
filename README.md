@@ -114,3 +114,5 @@ AVR_Projects_EmbeddedC
 56- ButtonExternalInterruptBlinking1LED
 
 57- ButtonExternalInterruptUpCounterLED
+
+58- ButtonExternalInterruptEvenOddUpCounter2DigitsMultiplex7SegmentCA
