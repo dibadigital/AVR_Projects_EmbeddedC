@@ -1,0 +1,3 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"ButtonExternalInterruptEvenOddUpCounter2DigitsMultiplex7SegmentCA.c" LINE:15
+display DSTACK_USAGE:7 DSTACK_LEVEL:7 FILE:"ButtonExternalInterruptEvenOddUpCounter2DigitsMultiplex7SegmentCA.c" LINE:55
+isr_ext_int0 DSTACK_USAGE:2 DSTACK_LEVEL:9 FILE:"ButtonExternalInterruptEvenOddUpCounter2DigitsMultiplex7SegmentCA.c" LINE:10
