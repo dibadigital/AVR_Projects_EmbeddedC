@@ -118,3 +118,5 @@ AVR_Projects_EmbeddedC
 58- ButtonExternalInterruptUpCounterLED
 
 59- ButtonExternalInterruptEvenOddUpCounter2DigitsMultiplex7SegmentCA
+
+60- ButtonCounter0ExternalClockLED
