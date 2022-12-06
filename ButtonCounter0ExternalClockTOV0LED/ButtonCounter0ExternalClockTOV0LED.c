@@ -22,7 +22,7 @@ void main(void)
     {  
         PORTA = TCNT0;
         
-        if(TIFR & (1 << 0) == 0x01)
+        if((TIFR & (1 << 0)) == 0x01)
         {
             PORTD.0 = !PORTD.0; //Toggle PD0 
             TCNT0 = 246;
