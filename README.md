@@ -122,3 +122,5 @@ AVR_Projects_EmbeddedC
 60- ButtonCounter0ExternalClockLED
 
 61- ButtonCounter0ExternalClockTOV0LED
+
+62- ButtonCounter0ExternalClock2X16CharacterLCD
