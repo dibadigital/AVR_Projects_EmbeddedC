@@ -119,8 +119,8 @@ AVR_Projects_EmbeddedC
 
 59- ButtonExternalInterruptEvenOddUpCounter2DigitsMultiplex7SegmentCA
 
-60- ButtonCounter0ExternalClockLED
+60- ButtonCounter0ExternalClockLED (Mode: Normal)
 
-61- ButtonCounter0ExternalClockTOV0LED
+61- ButtonCounter0ExternalClockTOV0LED (Mode: Normal)
 
-62- ButtonCounter0ExternalClock2X16CharacterLCD
+62- ButtonCounter0ExternalClock2X16CharacterLCD (Mode: Normal)
