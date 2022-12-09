@@ -128,3 +128,5 @@ AVR_Projects_EmbeddedC
 63- ButtonCounter0CTCExternalClockOCF02X16CharacterLCD (Mode: CTC)
 
 64- Timer0NormalFreqOverflow1kHzFreqOC0500Hz (Mode: Normal)
+
+65- Timer0CTCFreqOverflow1kHzFreqOC0500Hz (Mode: CTC)
