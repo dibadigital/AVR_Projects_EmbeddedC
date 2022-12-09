@@ -1,0 +1,2 @@
+main DSTACK_USAGE:0 DSTACK_LEVEL:0 FILE:"Timer0NormalFreqOverflow1kHzFreqOC0500Hz.c" LINE:10
+isr_ovf_timer0 DSTACK_USAGE:1 DSTACK_LEVEL:1 FILE:"Timer0NormalFreqOverflow1kHzFreqOC0500Hz.c" LINE:5

@@ -1,0 +1,5 @@
+VERSION:3 SOURCE_TIMESTAMP:55898F0A
+NODE:I LEVEL:0 LINE:1 "C:\cvavr\inc\mega16a.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr\inc\delay.h"
+NODE:F LEVEL:0 LINE:5 "isr_ovf_timer0(void)"
+NODE:F LEVEL:0 LINE:10 "main(void)"
