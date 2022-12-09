@@ -130,3 +130,5 @@ AVR_Projects_EmbeddedC
 64- Timer0NormalFreqOverflow1kHzFreqOC0500Hz (Mode: Normal)
 
 65- Timer0CTCFreqOverflow1kHzFreqOC0500Hz (Mode: CTC)
+
+66- ButtonTimer0CTCVariableFreq500HzTo4kHz (Mode: CTC)
