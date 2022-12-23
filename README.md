@@ -134,3 +134,5 @@ AVR_Projects_EmbeddedC
 66- ButtonTimer0CTCVariableFreq500HzTo4kHz (Mode: CTC)
 
 67- ButtonTimer0FastPWMFreq1kHzVariableDutyCycle (Mode: FastPWM)
+
+68- ButtonTimer0PhaseCorrectPWMFreq245HzVariableDutyCycle
