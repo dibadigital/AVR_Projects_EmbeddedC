@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Atmel Studio Solution File, Format Version 11.00
+Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "ButtonTimer0CTCVariableFreq500HzTo4kHz2X16CharacterLCD", "ButtonTimer0CTCVariableFreq500HzTo4kHz2X16CharacterLCD.cproj", "{CF08B5DD-423D-497C-A76A-A46C3F34E8A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|AVR = Debug|AVR
+		Release|AVR = Release|AVR
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CF08B5DD-423D-497C-A76A-A46C3F34E8A0}.Debug|AVR.ActiveCfg = Debug|AVR
+		{CF08B5DD-423D-497C-A76A-A46C3F34E8A0}.Debug|AVR.Build.0 = Debug|AVR
+		{CF08B5DD-423D-497C-A76A-A46C3F34E8A0}.Release|AVR.ActiveCfg = Release|AVR
+		{CF08B5DD-423D-497C-A76A-A46C3F34E8A0}.Release|AVR.Build.0 = Release|AVR
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
