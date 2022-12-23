@@ -135,4 +135,4 @@ AVR_Projects_EmbeddedC
 
 67- ButtonTimer0FastPWMFreq1kHzVariableDutyCycle (Mode: FastPWM)
 
-68- ButtonTimer0PhaseCorrectPWMFreq245HzVariableDutyCycle
+68- ButtonTimer0PhaseCorrectPWMFreq245HzVariableDutyCycle (Mode : PhaseCorrectPWM)
