@@ -26,9 +26,6 @@ void main(void)
 {    
     char lcd_str[20] = {0}; 
     
-    DDRB = 0xFF;
-    PORTB = 0x00;
-      
     DDRC = 0xFF;  //LCD DIR
     PORTC = 0x00; //LCD PORT
     
