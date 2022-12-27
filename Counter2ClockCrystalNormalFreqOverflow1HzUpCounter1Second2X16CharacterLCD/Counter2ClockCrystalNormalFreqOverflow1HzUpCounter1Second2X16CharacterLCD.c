@@ -27,8 +27,8 @@ void main(void)
     // Freq_ClockCrystal = 32.768 KHz, Prescaler = 128, Bottom = 0, Top = 255 
     // T_ovf = 1 s, Freq_ovf = 1 Hz
     ASSR = (1 << 3); // Enabling Counter 2 (ClockCrystal, RTC)
-    TCCR2 = 0x05;    // Prescaler = 64       
-    TCNT2 = 0;       // Bottom = 131  
+    TCCR2 = 0x05;    // Prescaler = 128       
+    TCNT2 = 0;       // Bottom = 0  
     OCR2 = 255;      // compare match and generate oc2
     TIMSK = (1 << 6);    // Enabling Timer 2 overflow interrupt
       
