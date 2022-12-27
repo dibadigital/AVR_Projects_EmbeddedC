@@ -139,4 +139,6 @@ AVR_Projects_EmbeddedC
 
 69- ButtonTimer0PhaseCorrectPWMFreq245HzVariableDutyCycle2X16CharacterLCD (Mode: PhaseCorrectPWM)
 
-70- Counter2ClockCrystalNormalFreqOverflow1HzUpCounter1Second2X16CharacterLCD (Mode: Normal)
+70- ButtonCounter2ExternalClock2X16CharacterLCD (Mode: Normal)
+
+71- Counter2ClockCrystalNormalFreqOverflow1HzUpCounter1Second2X16CharacterLCD (Mode: Normal)
