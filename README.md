@@ -142,3 +142,5 @@ AVR_Projects_EmbeddedC
 70- ButtonCounter2ExternalClock2X16CharacterLCD (Mode: Normal)
 
 71- Counter2ClockCrystalNormalFreqOverflow1HzUpCounter1Second2X16CharacterLCD (Mode: Normal)
+
+72- Counter2ClockCrystalDigitalClock2X16CharacterLCD (Mode: Normal)
