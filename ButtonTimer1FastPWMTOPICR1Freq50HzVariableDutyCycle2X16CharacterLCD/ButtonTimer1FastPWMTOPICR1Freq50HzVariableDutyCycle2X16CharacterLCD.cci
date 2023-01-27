@@ -1,0 +1,13 @@
+VERSION:3 SOURCE_TIMESTAMP:563B7317
+NODE:I LEVEL:0 LINE:1 "C:\cvavr\inc\mega16a.h"
+NODE:I LEVEL:0 LINE:2 "C:\cvavr\inc\delay.h"
+NODE:I LEVEL:0 LINE:3 "C:\cvavr\inc\stdio.h"
+NODE:I LEVEL:0 LINE:4 "C:\cvavr\inc\stdint.h"
+NODE:I LEVEL:0 LINE:7 "C:\cvavr\inc\alcd.h"
+NODE:M LEVEL:0 LINE:9 "MIN_OCR"
+NODE:M LEVEL:0 LINE:10 "MAX_OCR"
+NODE:F LEVEL:0 LINE:17 "main(void)"
+NODE:F LEVEL:0 LINE:98 "TCNT1_Access_Write(unsigned int input_data)"
+NODE:F LEVEL:0 LINE:109 "ICR1_Access_Write(unsigned int input_data)"
+NODE:F LEVEL:0 LINE:120 "OCR1A_Access_Write(unsigned int input_data)"
+NODE:F LEVEL:0 LINE:131 "OCR1B_Access_Write(unsigned int input_data)"
