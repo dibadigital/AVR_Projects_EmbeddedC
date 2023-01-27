@@ -144,3 +144,5 @@ AVR_Projects_EmbeddedC
 71- Counter2ClockCrystalNormalFreqOverflow1HzUpCounter1Second2X16CharacterLCD (Mode: Normal)
 
 72- Counter2ClockCrystalDigitalClock2X16CharacterLCD (Mode: Normal)
+
+73- ButtonTimer1FastPWMTOPICR1Freq50HzVariableDutyCycle2X16CharacterLCD (Mode: FastPWM, TOP=ICR1)
