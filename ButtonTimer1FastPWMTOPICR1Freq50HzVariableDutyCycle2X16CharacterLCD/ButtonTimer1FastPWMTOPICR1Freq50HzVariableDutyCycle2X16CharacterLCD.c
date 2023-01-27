@@ -103,7 +103,7 @@ void TCNT1_Access_Write(unsigned int input_data)
 //    TCNT1 = input_data;  
     TCNT1H = (unsigned char)(input_data >> 8);
     TCNT1L = (unsigned char)input_data;
-    SREG  = interrupt_status;        
+    SREG  = interrupt_status;    //#asm("sei")    
 }
 
 void ICR1_Access_Write(unsigned int input_data)
@@ -114,7 +114,7 @@ unsigned char interrupt_status = 0;
 //    ICR1 = input_data;
     ICR1H = (unsigned char)(input_data >> 8);
     ICR1L = (unsigned char)input_data;
-    SREG  = interrupt_status;        
+    SREG  = interrupt_status;   //#asm("sei")        
 }
 
 void OCR1A_Access_Write(unsigned int input_data)
@@ -125,7 +125,7 @@ void OCR1A_Access_Write(unsigned int input_data)
 //    OCR1A = input_data;
     OCR1AH = (unsigned char)(input_data >> 8);
     OCR1AL = (unsigned char)input_data;
-    SREG  = interrupt_status;        
+    SREG  = interrupt_status;   //#asm("sei")         
 }
 
 void OCR1B_Access_Write(unsigned int input_data)
@@ -136,6 +136,6 @@ void OCR1B_Access_Write(unsigned int input_data)
 //    OCR1B = input_data;
     OCR1BH = (unsigned char)(input_data >> 8);
     OCR1BL = (unsigned char)input_data;
-    SREG  = interrupt_status;        
+    SREG  = interrupt_status;   //#asm("sei")         
 }
 
