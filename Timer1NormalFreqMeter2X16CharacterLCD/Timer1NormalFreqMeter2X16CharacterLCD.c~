@@ -1,0 +1,193 @@
+#include <mega16a.h>
+#include <delay.h>
+#include <stdio.h>
+#include <stdint.h>
+
+// Alphanumeric LCD functions
+#include <alcd.h>
+
+#define AVG_NUM 10
+#define TIMEOUT 1000000
+
+enum state
+{
+    STATE1,
+    STATE2,
+    STATE_Calculate
+}s;
+
+uint32_t overflow = 0;
+uint16_t X_Capture1 = 0, X_Capture2 = 0;
+uint32_t d[AVG_NUM] = {0};
+uint8_t idx = 0;
+uint32_t d_AVG = 0;
+float  T_ICP1_AVG = 0.0,  F_ICP1_AVG = 0.0;
+uint32_t timeout = 0;
+
+uint16_t ICR1_Access_Read(void);
+uint32_t Calculate_AVG(uint32_t* arr, uint8_t num);
+void DELETE_ONE_OLD_VALUE(uint32_t* arr, uint8_t num);
+
+interrupt [TIM1_OVF] void isr_ovf_timer1(void)
+{
+    overflow++;
+}
+
+interrupt [TIM1_CAPT] void isr_icp1_timer1(void)
+{
+    timeout = 0;
+    switch(s)
+    {
+        case STATE1:              
+            overflow = 0;  //overflow must be reset after each calculation
+            X_Capture1 = ICR1_Access_Read();
+            s = STATE2;
+        break;
+        case STATE2: 
+            X_Capture2 = ICR1_Access_Read();                             
+            s = STATE_Calculate;
+            TIMSK  &= ~(1 << 2);        //Disable Interrupt Overflow TIM1
+            TIMSK  &= ~(1 << 5);        //Disable Interrupt Input Capture
+        break;
+    }    
+}
+
+void main(void)
+{    
+    char lcd_str[20] = {0};
+    
+    DDRC = 0xFF;  //LCD DIR
+    PORTC = 0x00; //LCD PORT
+    
+    DDRD = 0x00;  //PD6(ICP1) : input
+    PORTD = 0xFF;
+    
+    // Timer1, Normal Mode, TOP = 0xFFFF
+    // Freq_osc = 16 MHz, Prescaler = 1, Bottom = 0
+    // T_ovf  =~ 4 ms, Freq_ovf =~ 244.14 Hz
+    TCCR1A = 0x00;                  // Normal Mode    
+    TCCR1A |= (0 << 4) | (0 << 5);  // Normal port operation, oc1B disconnected  
+    TCCR1A |= (0 << 6) | (0 << 7);  // Normal port operation, oc1A disconnected 
+    
+    TCCR1B = 0x01;                  // Prescaler = 1 
+    TCCR1B |= (0 << 3) | (0 << 4);  // Normal Mode 
+    TCCR1B |= (0 << 6);            // Falling Edge ICP1  
+    TCCR1B |= (0 << 7);            // Disable Input Capture Noise Canceler
+
+    TCNT1H = 0x00;  
+    TCNT1L = 0x00;
+         
+    TIMSK |= (1 << 2); //Enable Interrupt Overflow TIM1
+    TIMSK |= (1 << 5); //Enable Interrupt Input Capture
+    
+    #asm("sei")
+    
+    // Alphanumeric LCD initialization
+    // Connections are specified in the
+    // Project|Configure|C Compiler|Libraries|Alphanumeric LCD menu:
+    // RS - PORTC Bit 0
+    // RD - PORTC Bit 1
+    // EN - PORTC Bit 2
+    // D4 - PORTC Bit 4
+    // D5 - PORTC Bit 5
+    // D6 - PORTC Bit 6
+    // D7 - PORTC Bit 7
+    // Characters/line: 16
+    lcd_init(16);
+    
+    lcd_clear();
+      
+    sprintf(lcd_str, "T = %8f ms ", 1000*T_ICP1_AVG);
+    lcd_gotoxy(0, 0);
+    lcd_puts(lcd_str);
+                
+    sprintf(lcd_str, "F = %9.1f Hz", F_ICP1_AVG);
+    lcd_gotoxy(0, 1);
+    lcd_puts(lcd_str);
+                
+    while(1)
+    {       
+        if (timeout < TIMEOUT)
+        {
+            timeout++;  
+            if(s == STATE_Calculate)
+            {                                                
+                d[idx] = ((overflow * 65536) + X_Capture2) - X_Capture1;
+                          
+                idx++;
+                if(idx == AVG_NUM)
+                {                     
+                    d_AVG = Calculate_AVG(d, AVG_NUM); 
+                    T_ICP1_AVG = (1/16000000.0)*d_AVG;   
+                    F_ICP1_AVG = 1.0 / T_ICP1_AVG;
+                       
+                    sprintf(lcd_str, "T = %8f ms ", 1000*T_ICP1_AVG);
+                    lcd_gotoxy(0, 0);
+                    lcd_puts(lcd_str);
+                    
+                    sprintf(lcd_str, "F = %9.1f Hz", F_ICP1_AVG);
+                    lcd_gotoxy(0, 1);
+                    lcd_puts(lcd_str);
+                    
+                    delay_ms(500);
+                    
+                    idx = AVG_NUM - 1;
+                    DELETE_ONE_OLD_VALUE(d, AVG_NUM);
+                } 
+                   
+                s = STATE1;
+                                                       
+                TIFR  |= (1 << 2); //Reset Flag Overflow TIM1
+                TIFR  |= (1 << 5); //Reset Flag Input Capture  
+                
+                TIMSK |= (1 << 2); //Enable Interrupt Overflow TIM1
+                TIMSK |= (1 << 5); //Enable Interrupt Input Capture
+            }  
+        }
+        else
+        {
+            sprintf(lcd_str, "NO SIGNAL...    ");
+            lcd_gotoxy(0, 0);
+            lcd_puts(lcd_str); 
+             
+            sprintf(lcd_str, "                ");
+            lcd_gotoxy(0, 1);
+            lcd_puts(lcd_str);
+        }
+    }
+}
+
+uint16_t ICR1_Access_Read(void)
+{
+    uint8_t icr1_L = 0, icr1_H = 0;  
+    uint16_t icr1_data = 0;
+    unsigned char interrupt_status = 0;   
+    interrupt_status = SREG;
+    #asm("cli")   
+//    icr1_data = ICR1; 
+    icr1_L = ICR1L;
+    icr1_H = ICR1H;
+    icr1_data = (icr1_H << 8) | icr1_L;
+    SREG  = interrupt_status;   //#asm("sei")     
+    return icr1_data;     
+}
+
+uint32_t Calculate_AVG(uint32_t* arr, uint8_t num)
+{
+    uint8_t i;
+    uint32_t sum = 0;
+    for(i = 0; i < num; i++)
+    {
+        sum += arr[i];
+    }   
+    return (sum/num);
+}
+
+void DELETE_ONE_OLD_VALUE(uint32_t* arr, uint8_t num)
+{
+     uint8_t i;
+     for(i = 1; i < num; i++)
+    {
+        arr[i-1] = arr[i];
+    } 
+}
