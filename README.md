@@ -146,3 +146,5 @@ AVR_Projects_EmbeddedC
 72- Counter2ClockCrystalDigitalClock2X16CharacterLCD (Mode: Normal)
 
 73- ButtonTimer1FastPWMTOPICR1Freq50HzVariableDutyCycle2X16CharacterLCD (Mode: FastPWM, TOP=ICR1)
+
+74- Timer1NormalFreqMeter2X16CharacterLCD (Mode: Normal, TOP=0xFFFF, InputCapture)
