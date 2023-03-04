@@ -148,3 +148,9 @@ AVR_Projects_EmbeddedC
 73- ButtonTimer1FastPWMTOPICR1Freq50HzVariableDutyCycle2X16CharacterLCD (Mode: FastPWM, TOP=ICR1)
 
 74- Timer1NormalFreqMeter2X16CharacterLCD (Mode: Normal, TOP=0xFFFF, InputCapture)
+
+75- LM35ADC02X16CharacterLCD
+
+76- LM35ADC0Interrupt2X16CharacterLCD
+
+77- LM35ADC0POTADC1Interrupt2X16CharacterLCD
