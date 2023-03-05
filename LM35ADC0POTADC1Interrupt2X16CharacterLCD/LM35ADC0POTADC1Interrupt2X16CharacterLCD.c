@@ -87,49 +87,49 @@ void main(void)
         {
             flag_adc = 0;       
             
-                switch(ch_adc)
-                {
-                    case adc0: 
-                        adc[ch_adc][idx_adc0] = adc_val;   
-                        idx_adc0++;
-                        if(idx_adc0 == AVG_NUM) 
-                        {
-                            average_adc[ch_adc] = Calculate_AVG(adc[ch_adc], AVG_NUM); 
+            switch(ch_adc)
+            {
+                case adc0: 
+                    adc[ch_adc][idx_adc0] = adc_val;   
+                    idx_adc0++;
+                    if(idx_adc0 == AVG_NUM) 
+                    {
+                        average_adc[ch_adc] = Calculate_AVG(adc[ch_adc], AVG_NUM); 
                                                     
-                            input_voltage[ch_adc] = (ADC_VREF/ADC_RESULOTION)*average_adc[ch_adc]; //V  
+                        input_voltage[ch_adc] = (ADC_VREF/ADC_RESULOTION)*average_adc[ch_adc]; //V  
                 
-                            // LM35: each centigrade = 10 mV = 0.01 V
-                            temprature = input_voltage[ch_adc] * 100;   // temprature = input_voltage / 0.01 V     
+                        // LM35: each centigrade = 10 mV = 0.01 V
+                        temprature = input_voltage[ch_adc] * 100;   // temprature = input_voltage / 0.01 V     
                         
-                            sprintf(lcd_str, "temp = %4.2f", temprature);
-                            lcd_gotoxy(0, 0);
-                            lcd_puts(lcd_str); 
+                        sprintf(lcd_str, "temp = %4.2f", temprature);
+                        lcd_gotoxy(0, 0);
+                        lcd_puts(lcd_str); 
                             
-                            idx_adc0 = AVG_NUM - 1;
-                            DELETE_ONE_OLD_VALUE(adc[ch_adc], AVG_NUM); 
-                        }
-                    break;  
+                        idx_adc0 = AVG_NUM - 1;
+                        DELETE_ONE_OLD_VALUE(adc[ch_adc], AVG_NUM); 
+                    }
+                break;  
                     
-                    case adc1:  
-                        adc[ch_adc][idx_adc1] = adc_val;   
-                        idx_adc1++;
-                        if(idx_adc1 == AVG_NUM) 
-                        {
-                            average_adc[ch_adc] = Calculate_AVG(adc[ch_adc], AVG_NUM); 
+                case adc1:  
+                    adc[ch_adc][idx_adc1] = adc_val;   
+                    idx_adc1++;
+                    if(idx_adc1 == AVG_NUM) 
+                    {
+                        average_adc[ch_adc] = Calculate_AVG(adc[ch_adc], AVG_NUM); 
                                                     
-                            input_voltage[ch_adc] = (ADC_VREF/ADC_RESULOTION)*average_adc[ch_adc]; //V  
+                        input_voltage[ch_adc] = (ADC_VREF/ADC_RESULOTION)*average_adc[ch_adc]; //V  
                                 
-                            voltage_pot = input_voltage[ch_adc];
+                        voltage_pot = input_voltage[ch_adc];
                         
-                            sprintf(lcd_str, "V = %4.2f", voltage_pot);
-                            lcd_gotoxy(0, 1);
-                            lcd_puts(lcd_str);  
+                        sprintf(lcd_str, "V = %4.2f", voltage_pot);
+                        lcd_gotoxy(0, 1);
+                        lcd_puts(lcd_str);  
                             
-                            idx_adc1 = AVG_NUM - 1;
-                            DELETE_ONE_OLD_VALUE(adc[ch_adc], AVG_NUM);
-                        }  
-                    break;
-                }      
+                        idx_adc1 = AVG_NUM - 1;
+                        DELETE_ONE_OLD_VALUE(adc[ch_adc], AVG_NUM);
+                    }  
+                break;
+            }      
                  
         }
           
