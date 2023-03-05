@@ -22,8 +22,6 @@ enum channel_adc
 
 char lcd_str[20] = {0};
 
-//uint8_t channel_adc = 0;
-
 uint8_t flag_adc = 0;
 
 uint16_t adc_val = 0;
