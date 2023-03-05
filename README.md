@@ -1,5 +1,5 @@
 # AVR_Projects_EmbeddedC
-AVR_Projects_EmbeddedC
+AVR MCU Projects with EmbeddedC
 
 1- Blinking1LED
 
