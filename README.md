@@ -156,3 +156,5 @@ AVR MCU Projects with EmbeddedC
 77- LM35ADC0POTADC1Interrupt2X16CharacterLCD
 
 78- LM35ADC0POTADC1InterruptAutoTrigTimer0NormalFreqOverflow1kHz2X16CharacterLCD (Mode: Normal)
+
+79- TaskManager
