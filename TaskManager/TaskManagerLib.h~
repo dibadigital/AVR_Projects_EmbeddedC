@@ -1,0 +1,31 @@
+#ifndef TaskManagerLib_H_
+#define TaskManagerLib_H_
+
+#include <stdint.h>
+
+#define TASK_MAX 5
+
+// function pointer
+typedef void (*TaskFunc) (void);
+
+typedef struct
+{
+    uint8_t  Active;        /* Flag     */
+    uint16_t counterTim;    /* Counter  */
+    uint16_t MainTime;      /* Time     */   
+    uint8_t  Step;          /* Step for Time */
+    TaskFunc Job;           /* Function */     
+}Task_t;
+
+
+void Task_Add (uint8_t bankNumber, uint16_t mainTime, TaskFunc funcTask);
+
+void Task_ChangeStep (uint8_t bankNumber, uint8_t step);
+
+void Task_ChangeTime (uint8_t bankNumber, uint16_t newTime);
+
+void Task_TimingCallback (void);
+
+void TaskRun (void);
+
+#endif

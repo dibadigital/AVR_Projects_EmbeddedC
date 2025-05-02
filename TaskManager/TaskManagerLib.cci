@@ -1,0 +1,9 @@
+VERSION:3 SOURCE_TIMESTAMP:5AA255DC
+NODE:I LEVEL:0 LINE:2 "C:\Users\DibaUser\Desktop\TaskManager\TaskManagerLib.h"
+NODE:I LEVEL:0 LINE:4 "C:\cvavr\inc\stdio.h"
+NODE:V LEVEL:0 LINE:6 "systemTask_G002 -> RAM:????"
+NODE:F LEVEL:0 LINE:8 "Task_Add(uint8_t bankNumber,uint16_t mainTime,TaskFunc funcTask)"
+NODE:F LEVEL:0 LINE:17 "Task_ChangeStep(uint8_t bankNumber,uint8_t step)"
+NODE:F LEVEL:0 LINE:22 "Task_ChangeTime(uint8_t bankNumber,uint16_t newTime)"
+NODE:F LEVEL:0 LINE:27 "Task_TimingCallback(void)"
+NODE:F LEVEL:0 LINE:40 "TaskRun(void)"

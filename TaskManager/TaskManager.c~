@@ -1,0 +1,127 @@
+/*******************************************************
+This program was created by the
+CodeWizardAVR V3.12 Advanced
+Automatic Program Generator
+© Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
+http://www.hpinfotech.com
+
+Project : 
+Version : 
+Date    : 5/1/2025
+Author  : 
+Company : 
+Comments: 
+
+
+Chip type               : ATmega16A
+Program type            : Application
+AVR Core Clock frequency: 8.000000 MHz
+Memory model            : Small
+External RAM size       : 0
+Data Stack size         : 256
+*******************************************************/
+
+#include <mega16a.h>
+
+#include <stdio.h>
+#include <delay.h>
+#include <stdint.h>
+
+#include "InitHW.h"
+#include "TaskManagerLib.h"
+
+//volatile uint16_t counterTim1 = 0;
+//volatile uint16_t counterTim2 = 0;
+//volatile uint8_t  flagLED1 = 0;
+//volatile uint8_t  flagLED2 = 0;
+
+void LED1_Task (uint8_t step);
+void LED2_Task (uint8_t step);
+
+// Timer 0 output compare interrupt service routine
+interrupt [TIM0_COMP] void timer0_comp_isr(void)
+{    
+    Task_TimingCallback ();
+    
+//   counterTim1++;
+//   if (counterTim1 == 500) // 500ms
+//   {
+//        flagLED1 = 1;
+//        counterTim1 = 0;
+//   }    
+//   
+//   counterTim2++;
+//   if (counterTim2 == 100) // 100ms
+//   {
+//        flagLED2 = 1;
+//        counterTim2 = 0;
+//   }
+}
+
+void main(void)
+{
+    InitHW();
+
+    /* log */ 
+    printf ("System Start...\r"); /* Connect to the serial port because we have the putchar function in the InitHW */
+    
+    Task_Add (0, 500, LED1_Task);    
+    Task_Add (1, 100, LED2_Task);   
+    
+    while (1)
+    {       
+        TaskRun ();
+                 
+//        if (flagLED1)  // 500ms
+//        {
+//            flagLED1 = 0;
+//            PORTB.0 = !PORTB.0;  // Toggle LED 1 (PB0)
+//        }
+//        
+//        if (flagLED2)  // 100ms
+//        {
+//            flagLED2 = 0;
+//            PORTB.1 = !PORTB.1;  // Toggle LED 2 (PB1)
+//        }
+    }
+}
+
+/* 
+    500ms
+*/
+void LED1_Task (uint8_t step)
+{
+    PORTB.0 = ~PORTB.0;  // Toggle LED 1 (PB0)    
+}
+
+
+/*
+   3steps*100ms
+   1steps*1000ms 
+*/
+void LED2_Task (uint8_t step)
+{
+    static uint8_t cntOfRun = 0;
+    
+    switch (step)
+    {
+        case 0:
+        {
+            PORTB.1 = ~PORTB.1;  // Toggle LED 2 (PB1)
+            cntOfRun++;
+            if (cntOfRun == 3)
+            {
+                cntOfRun = 0; 
+                Task_ChangeStep (1, 1);  
+                Task_ChangeTime (1, 1000);
+            }
+        }break;
+        
+        case 1:
+        {
+            PORTB.1 = ~PORTB.1;  // Toggle LED 2 (PB1)
+            Task_ChangeStep (1, 0);  
+            Task_ChangeTime (1, 100);
+        }break;           
+    }
+}

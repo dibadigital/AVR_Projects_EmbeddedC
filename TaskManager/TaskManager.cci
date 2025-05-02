@@ -1,0 +1,12 @@
+VERSION:3 SOURCE_TIMESTAMP:5AA266AE
+NODE:I LEVEL:0 LINE:1 "C:\cvavr\inc\mega16a.h"
+NODE:I LEVEL:0 LINE:3 "C:\cvavr\inc\stdio.h"
+NODE:I LEVEL:0 LINE:4 "C:\cvavr\inc\delay.h"
+NODE:I LEVEL:0 LINE:5 "C:\cvavr\inc\stdint.h"
+NODE:I LEVEL:0 LINE:7 "C:\Users\DibaUser\Desktop\TaskManager\InitHW.h"
+NODE:I LEVEL:0 LINE:8 "C:\Users\DibaUser\Desktop\TaskManager\TaskManagerLib.h"
+NODE:F LEVEL:0 LINE:19 "timer0_comp_isr(void)"
+NODE:F LEVEL:0 LINE:38 "main(void)"
+NODE:F LEVEL:0 LINE:69 "LED1_Task(uint8_t step)"
+NODE:F LEVEL:0 LINE:79 "LED2_Task(uint8_t step)"
+NODE:V LEVEL:0 LINE:81 "cntOfRun_S0000003000 -> RAM:????"
